@@ -43,11 +43,14 @@ namespace Sanicball.Gameplay
         private AudioSource speedNoise;
         [SerializeField]
         private AudioSource brake;
+        [SerializeField]
+        private AudioSource smashIntoWall;
 
         public AudioSource Jump { get { return jump; } }
         public AudioSource Roll { get { return roll; } }
         public AudioSource SpeedNoise { get { return speedNoise; } }
         public AudioSource Brake { get { return brake; } }
+        public AudioSource SmashIntoWall { get { return smashIntoWall; } }
     }
 
     [System.Serializable]
@@ -272,6 +275,10 @@ namespace Sanicball.Gameplay
             characterStats = c.stats;
         }
 
+        float LastxVel = 0;
+        float LastyVel = 0;
+        float LastzVel = 0;
+        int debugCounter = 0;
         private void FixedUpdate()
         {
             if (CanMove)
@@ -307,6 +314,27 @@ namespace Sanicball.Gameplay
                 //rigidbody.AddForce(-up*stats.grip * (rigidbody.velocity.magnitude/400)); //Downwards gravity to increase grip
                 //Debug.Log(stats.grip * Mathf.Pow(rigidbody.velocity.magnitude/100,2));
             }
+            //TODO: oof
+            float xVel = rb.velocity.x;
+            float yVel = rb.velocity.y;
+            float zVel = rb.velocity.z;
+            if (xVel < LastxVel - 60 || xVel > LastxVel - 60 || 
+                yVel < LastyVel - 60 || yVel > LastyVel - 60 || 
+                zVel < LastzVel - 60 || zVel > LastzVel - 60)
+            {
+                //TODO: pitch based on movementSpeed
+                sounds.SmashIntoWall.Play();
+            }
+            debugCounter++;
+            if (debugCounter > 10)
+            {
+                Debug.Log("X: " + xVel + ", Y: " + yVel + ", Z: " + zVel);
+                debugCounter = 0;
+            }
+            LastxVel = xVel;
+            LastyVel = yVel;
+            LastzVel = zVel;
+
         }
 
         private void Update()

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
+
 
 namespace Sanicball.UI
 {
@@ -13,12 +16,14 @@ namespace Sanicball.UI
         private int curImg = 0;
         private bool isHoldingImage = false;
         private float holdImageTimer = 0;
-
         private bool isFadeOut = false;
+        //Object for loading the scene on a separate thread. By Icedude907
+        private AsyncOperation asyncLoad = null;
 
         private void Start()
         {
             holdImageTimer = imgTime;
+            PreLoadMenu();
         }
 
         private void Update()
@@ -77,10 +82,17 @@ namespace Sanicball.UI
             holdImageTimer += imgTime;
         }
 
+        private void PreLoadMenu()
+        {
+            asyncLoad = SceneManager.LoadSceneAsync(menuSceneName);
+            asyncLoad.allowSceneActivation = false;
+        }
         private void GoToMenu()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
+            asyncLoad.allowSceneActivation = true;
             isHoldingImage = true;
         }
+
     }
+
 }
