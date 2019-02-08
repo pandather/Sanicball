@@ -366,7 +366,7 @@ MonoBehaviour:
       grip: 75
     material: {fileID: 2100000, guid: aaf7911d8381c974db39dc85df26b6e7, type: 2}
     icon: {fileID: 21300000, guid: 2e8acc84c740ecf4baf9deabf2b6e9a2, type: 3}
-    color: {r: 1, g: 0.8482759, b: 0, a: 1}
+    color: {r: 0.4852941, g: 0.40679064, b: 0.28903547, a: 1}
     minimapIcon: {fileID: 2100000, guid: f5d23da2c0fe42d49b12083694a8ddd0, type: 2}
     trail: {fileID: 2100000, guid: 7272ba08fed4b044f86525c129f421f7, type: 2}
     ballSize: 1
