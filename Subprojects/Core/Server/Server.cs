@@ -72,6 +72,8 @@ namespace SanicballCore.Server
             CharacterTier.Hyperspeed,   //Super Sanic
             CharacterTier.Odd,       //Metal Sanic
             CharacterTier.Odd,          //Ogre
+            CharacterTier.Normal,    //Kaffa Carrot Cake
+            CharacterTier.Hyperspeed
         };
 
         public event EventHandler<LogArgs> OnLog;
