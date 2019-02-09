@@ -139,7 +139,8 @@ namespace Sanicball.Data
 
         private void Load<T>(string filename, ref T output)
         {
-            string fullPath = Application.persistentDataPath + "/" + filename;
+            //string fullPath = Application.persistentDataPath + "/" + filename;
+            string fullPath = "./" + filename;
             if (File.Exists(fullPath))
             {
                 //Load file contents
@@ -177,7 +178,8 @@ namespace Sanicball.Data
         private void Save(string filename, object objToSave)
         {
             var data = JsonConvert.SerializeObject(objToSave);
-            using (StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/" + filename))
+            //using (StreamWriter sw = new StreamWriter(Application.persistentDataPath + "/" + filename))
+            using (StreamWriter sw = new StreamWriter("./" + filename))
             {
                 sw.Write(data);
             }
